@@ -50,6 +50,11 @@ for key in ("enriched_variants", "biomarkers", "insights", "disease_risks", "upl
 
 # ── Helper: display error detail from API ───────────────────────────────────
 def show_api_error(resp: httpx.Response) -> None:
+    # 400 from Streamlit's own file layer = stale session after server sleep
+    if resp.status_code == 400:
+        st.error("⚠️ Upload failed — your session expired while the server was idle.")
+        st.info("💡 **Fix:** Press **R** or refresh the page, then re-upload your file.")
+        return
     try:
         detail = resp.json().get("detail", {})
         if isinstance(detail, dict):
