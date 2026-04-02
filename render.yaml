@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: bioinsight-backend
+    env: python
+    region: oregon
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r ../requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: NCBI_API_KEY
+        value: ""          # Optional — leave blank for 3 req/s, add key for 10 req/s
+      - key: QUEST_CLIENT_ID
+        sync: false        # Set manually in Render dashboard
+      - key: QUEST_CLIENT_SECRET
+        sync: false
+      - key: QUEST_TOKEN_URL
+        value: https://oauth.questdiagnostics.com/token
+      - key: QUEST_FHIR_BASE
+        value: https://api.questdiagnostics.com/fhir/r4
+    healthCheckPath: /health

@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(prd)",
+      "Skill(prd:*)",
+      "WebSearch",
+      "Bash(pip install:*)",
+      "Read(//Users/akshaytallikar/miniconda3/bin/**)",
+      "Read(//Users/akshaytallikar/anaconda3/bin/**)",
+      "Read(//usr/local/bin/**)",
+      "Read(//opt/homebrew/bin/**)",
+      "Read(//Users/akshaytallikar/.pyenv/**)",
+      "Bash(python3 -m pip --version)",
+      "Bash(python3 -m venv .venv)",
+      "Bash(.venv/bin/pip install:*)",
+      "Bash(curl -s http://localhost:8501)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8501)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8000/health)",
+      "Bash(kill 26830)",
+      "Bash(pkill -f streamlit)",
+      "Bash(curl -s http://localhost:8000/health)",
+      "Bash(curl -s -X POST http://localhost:8000/blood/upload -F \"file=@/Users/akshaytallikar/Desktop/Development Projects/AI Interview/data/sample_blood.csv\")",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s -X POST http://localhost:8000/genomics/upload -F \"file=@/Users/akshaytallikar/Desktop/Development Projects/AI Interview/data/sample_genomic.txt\")",
+      "Bash(python3 -c \":*)",
+      "Bash(curl -s \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=clinvar&term=rs429358[rs]&retmode=json\")",
+      "Bash(curl -v \"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=clinvar&term=rs429358%5Brs%5D&retmode=json\")",
+      "Bash(../.venv/bin/python3 -c \":*)",
+      "Skill(deploy)",
+      "Skill(deploy:*)"
+    ]
+  }
+}
