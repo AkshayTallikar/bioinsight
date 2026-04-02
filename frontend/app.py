@@ -18,11 +18,19 @@ import streamlit as st
 #   2. Environment variable — set in .env or platform env vars
 #   3. Localhost fallback for local development
 def _get_api_base() -> str:
+    # 1. Env var first — works for Fly.io, Docker, and local .env
+    from_env = os.getenv("BIOINSIGHT_API_URL")
+    if from_env:
+        return from_env.rstrip("/")
+    # 2. Streamlit Cloud secrets — only attempted when no env var is present
     try:
-        return st.secrets["BIOINSIGHT_API_URL"].rstrip("/")
+        val = st.secrets.get("BIOINSIGHT_API_URL")
+        if val:
+            return str(val).rstrip("/")
     except Exception:
         pass
-    return os.getenv("BIOINSIGHT_API_URL", "http://localhost:8000").rstrip("/")
+    # 3. Local dev fallback
+    return "http://localhost:8000"
 
 API_BASE = _get_api_base()
 DATA_DIR = pathlib.Path(__file__).parent.parent / "data"
