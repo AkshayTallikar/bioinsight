@@ -14,4 +14,8 @@ CMD ["streamlit", "run", "frontend/app.py", \
      "--server.port=8080", \
      "--server.address=0.0.0.0", \
      "--server.headless=true", \
-     "--browser.gatherUsageStats=false"]
+     "--browser.gatherUsageStats=false", \
+     "--server.enableXsrfProtection=false", \
+     "--server.enableCORS=false", \
+     "--server.maxUploadSize=200", \
+     "--server.maxMessageSize=200"]
